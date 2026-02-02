@@ -253,22 +253,7 @@ class DB(object):
             .replace("@", "_")
             .lower()
         )
-        if market == Market.HK.value:
-            table_name = f"{market}_klines_{stock_code[-3:]}"
-        elif market == Market.A.value:
-            table_name = f"{market}_klines_{stock_code[:7]}"
-        elif market == Market.US.value:
-            table_name = f"{market}_klines_{stock_code[0]}"
-        elif market == Market.FX.value:
-            table_name = f"{market}_klines_{stock_code}"
-        elif market == Market.CURRENCY.value:
-            table_name = f"{market}_klines_{stock_code}"
-        elif market == Market.CURRENCY_SPOT.value:
-            table_name = f"{market}_klines_{stock_code}"
-        elif market == Market.FUTURES.value:
-            table_name = f"{market}_klines_{stock_code}"
-        else:
-            raise Exception(f"市场错误：{market}")
+        table_name = f"{market}_klines_{stock_code}"
 
         if table_name in self.__cache_tables:
             return self.__cache_tables[table_name]
@@ -292,10 +277,6 @@ class DB(object):
             __table_args__ = {
                 "mysql_collate": "utf8mb4_general_ci",
             }
-
-        if market == Market.FUTURES.value:
-            # 期货市场，添加持仓列
-            TableByKlines.p = Column(Float, comment="持仓量")
 
         self.__cache_tables[table_name] = TableByKlines
         Base.metadata.create_all(self.engine)

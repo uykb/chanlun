@@ -16,25 +16,12 @@ gevent
 tornado
 sqlalchemy
 lark-oapi
+czsc>=0.10.0
 
 mytt
 matplotlib
 tqdm
-ipywidgets
-pinyin
-pyarmor
-setuptools
-
-futu-api
-ccxt
-baostock
-polygon-api-client
-alpaca-py
-ib_insync
-akshare
-tqsdk
-openai
 playwright
+openai
 
-pyfolio-reloaded
-dtaidistance
+ccxt

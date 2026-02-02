@@ -124,12 +124,6 @@ def create_app(test_config=None):
 
     # 各个市场支持的时间周期
     market_frequencys = {
-        "a": list(get_exchange(Market.A).support_frequencys().keys()),
-        "hk": list(get_exchange(Market.HK).support_frequencys().keys()),
-        "fx": list(get_exchange(Market.FX).support_frequencys().keys()),
-        "us": list(get_exchange(Market.US).support_frequencys().keys()),
-        "futures": list(get_exchange(Market.FUTURES).support_frequencys().keys()),
-        "ny_futures": list(get_exchange(Market.NY_FUTURES).support_frequencys().keys()),
         "currency": list(get_exchange(Market.CURRENCY).support_frequencys().keys()),
         "currency_spot": list(
             get_exchange(Market.CURRENCY_SPOT).support_frequencys().keys()
@@ -138,47 +132,23 @@ def create_app(test_config=None):
 
     # 各个交易所默认的标的
     market_default_codes = {
-        "a": get_exchange(Market.A).default_code(),
-        "hk": get_exchange(Market.HK).default_code(),
-        "fx": get_exchange(Market.FX).default_code(),
-        "us": get_exchange(Market.US).default_code(),
-        "futures": get_exchange(Market.FUTURES).default_code(),
-        "ny_futures": get_exchange(Market.NY_FUTURES).default_code(),
         "currency": get_exchange(Market.CURRENCY).default_code(),
         "currency_spot": get_exchange(Market.CURRENCY_SPOT).default_code(),
     }
 
     # 各个市场的交易时间
     market_session = {
-        "a": "24x7",
-        "hk": "24x7",
-        "fx": "24x7",
-        "us": "24x7",
-        "futures": "24x7",
-        "ny_futures": "24x7",
         "currency": "24x7",
         "currency_spot": "24x7",
     }
 
     # 各个交易所的时区 统一时区
     market_timezone = {
-        "a": "Asia/Shanghai",
-        "hk": "Asia/Shanghai",
-        "fx": "Asia/Shanghai",
-        "us": "America/New_York",
-        "futures": "Asia/Shanghai",
-        "ny_futures": "Asia/Shanghai",
         "currency": str(get_localzone()),
         "currency_spot": str(get_localzone()),
     }
 
     market_types = {
-        "a": "stock",
-        "hk": "stock",
-        "fx": "stock",
-        "us": "stock",
-        "futures": "futures",
-        "ny_futures": "futures",
         "currency": "crypto",
         "currency_spot": "crypto",
     }
@@ -258,12 +228,7 @@ def create_app(test_config=None):
         配置项
         """
         frequencys = list(
-            set(market_frequencys["a"])
-            | set(market_frequencys["hk"])
-            | set(market_frequencys["fx"])
-            | set(market_frequencys["us"])
-            | set(market_frequencys["futures"])
-            | set(market_frequencys["currency"])
+            set(market_frequencys["currency"])
             | set(market_frequencys["currency_spot"])
         )
         supportedResolutions = [v for k, v in frequency_maps.items() if k in frequencys]
@@ -275,12 +240,6 @@ def create_app(test_config=None):
             "supports_timescale_marks": True,
             "supports_time": False,
             "exchanges": [
-                {"value": "a", "name": "沪深", "desc": "沪深A股"},
-                {"value": "hk", "name": "港股", "desc": "港股"},
-                {"value": "fx", "name": "外汇", "desc": "外汇"},
-                {"value": "us", "name": "美股", "desc": "美股"},
-                {"value": "futures", "name": "国内期货", "desc": "国内期货"},
-                {"value": "ny_futures", "name": "纽约期货", "desc": "纽约期货"},
                 {
                     "value": "currency",
                     "name": "数字货币(Futures)",

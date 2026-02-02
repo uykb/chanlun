@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  chanlun-pro:
+    build: .
+    container_name: chanlun-pro
+    restart: unless-stopped
+    ports:
+      - "9900:9900"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - WEB_HOST=0.0.0.0
+      - LOGIN_PWD=${LOGIN_PWD:-}
+      - DB_TYPE=sqlite
+      - DB_DATABASE=chanlun_klines
+      - EXCHANGE_CURRENCY=binance
+      - BINANCE_APIKEY=${BINANCE_APIKEY:-}
+      - BINANCE_SECRET=${BINANCE_SECRET:-}
+      - PROXY_HOST=${PROXY_HOST:-}
+      - PROXY_PORT=${PROXY_PORT:-}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9900/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  data:

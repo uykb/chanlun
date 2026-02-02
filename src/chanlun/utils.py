@@ -23,8 +23,8 @@ def config_get_proxy():
     if db_proxy is not None and db_proxy["host"] != "" and db_proxy["port"] != "":
         return db_proxy
     return {
-        "host": config.PROXY_HOST,
-        "port": config.PROXY_PORT,
+        "host": getattr(config, "PROXY_HOST", ""),
+        "port": getattr(config, "PROXY_PORT", ""),
     }
 
 
@@ -32,16 +32,8 @@ def config_get_dingding_keys(market):
     db_dd_key = db.cache_get("dd_keys")
     if db_dd_key is not None and db_dd_key["token"] != "" and db_dd_key["secret"] != "":
         return db_dd_key
-    if market == "a":
-        return config.DINGDING_KEY_A
-    if market == "a":
-        return config.DINGDING_KEY_HK
-    if market == "us":
-        return config.DINGDING_KEY_US
-    if market == "futures":
-        return config.DINGDING_KEY_FUTURES
     if market == "currency":
-        return config.DINGDING_KEY_CURRENCY
+        return getattr(config, "DINGDING_KEY_CURRENCY", None)
 
     return None
 
@@ -59,10 +51,11 @@ def config_get_feishu_keys(market):
             "app_secret": db_fs_key["fs_app_secret"],
             "user_id": db_fs_key["fs_user_id"],
         }
-    keys = config.FEISHU_KEYS["default"]
-    if market in config.FEISHU_KEYS.keys():
-        keys = config.FEISHU_KEYS[market]
-    keys["user_id"] = config.FEISHU_KEYS["user_id"]
+    feishu_keys = getattr(config, "FEISHU_KEYS", {"default": {"app_id": "", "app_secret": ""}, "user_id": ""})
+    keys = feishu_keys.get("default", {"app_id": "", "app_secret": ""})
+    if market in feishu_keys.keys():
+        keys = feishu_keys[market]
+    keys["user_id"] = feishu_keys.get("user_id", "")
     return keys
 
 

@@ -13,7 +13,6 @@ from chanlun.exchange.exchange_db import ExchangeDB
 from chanlun.utils import config_get_proxy
 
 
-@fun.singleton
 class ExchangeBinance(Exchange):
     """
     数字货币交易所接口
@@ -21,8 +20,9 @@ class ExchangeBinance(Exchange):
 
     g_all_stocks = []
 
-    def __init__(self):
+    def __init__(self, market_type="futures"):
         params = {}
+        self.market_type = market_type
 
         proxy = config_get_proxy()
         # print(proxy)
@@ -39,9 +39,12 @@ class ExchangeBinance(Exchange):
             params["apiKey"] = config.BINANCE_APIKEY
             params["secret"] = config.BINANCE_SECRET
 
-        self.exchange = ccxt.binanceusdm(params)
-
-        self.db_exchange = ExchangeDB("currency")
+        if self.market_type == "futures":
+            self.exchange = ccxt.binanceusdm(params)
+            self.db_exchange = ExchangeDB("currency")
+        else:
+            self.exchange = ccxt.binance(params)
+            self.db_exchange = ExchangeDB("currency_spot")
 
         # 设置时区
         # self.tz = pytz.timezone("Asia/Shanghai")

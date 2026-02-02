@@ -5,18 +5,18 @@ import numpy as np
 import pandas as pd
 
 from chanlun import fun
-from chanlun.cl_interface import BI, FX, ICL, LINE, MACD_INFOS, ZS, Config, Kline
+# from chanlun.cl_interface import BI, FX, ICL, LINE, MACD_INFOS, ZS, Config, Kline
+from chanlun.cl import process_klines, CL
 from chanlun.db import db
 from chanlun.exchange import exchange
-from chanlun.file_db import FileCacheDB
+# from chanlun.file_db import FileCacheDB
 
 
 def web_batch_get_cl_datas(
     market: str, code: str, klines: Dict[str, pd.DataFrame], cl_config: dict = None
-) -> List[ICL]:
+) -> List[CL]:
     """
     WEB端批量计算并获取 缠论 数据
-    内部使用文件缓存，只能进行增量更新，不可用来获取并计算历史k线数据
     :param market: 市场
     :param code: 计算的标的
     :param klines: 计算的 k线 数据，每个周期对应一个 k线DataFrame，例如 ：{'30m': klines_30m, '5m': klines_5m}
@@ -24,9 +24,10 @@ def web_batch_get_cl_datas(
     :return: 返回计算好的缠论数据对象，List 列表格式，按照传入的 klines.keys 顺序返回 如上调用：[0] 返回 30m 周期数据 [1] 返回 5m 数据
     """
     cls = []
-    fdb = FileCacheDB()
     for f, k in klines.items():
-        cls.append(fdb.get_web_cl_data(market, code, f, cl_config, k))
+        # 直接计算，不使用文件缓存
+        cl_data = process_klines(k, cl_config)
+        cls.append(cl_data)
     return cls
 
 
