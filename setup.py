@@ -6,16 +6,16 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setuptools.setup(
     name="chanlun",
     version="2.0.1",
-    author="Wang Xu",
-    author_email="1058715329@qq.com",
+    author="Chanlun-Pro",
+    author_email="",
     description="基于缠论对过往行情数据进行分析的工具包。",
     long_description=long_description,
     long_description_content_type="text/markdown",
     include_package_data=True,
     license="MIT",
-    url="https://github.com/yijixiuxin/chanlun",
+    url="",
     project_urls={
-        "Bug Tracker": "https://github.com/yijixiuxin/chanlun/issues",
+        "Bug Tracker": "",
     },
     install_requires=[
         "numpy", "pandas", "pyecharts", "TA-Lib"

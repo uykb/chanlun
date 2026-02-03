@@ -33,8 +33,10 @@ temp/
 
 # 平台相关脚本
 *.bat
+*.exe
 check_env.py
 joinquant/
+script/
 
 # 编译产物
 build/

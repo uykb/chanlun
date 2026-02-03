@@ -1,11 +1,11 @@
 site_name: Chanlun-PRO 项目
-site_author: wangxu
+site_author: Chanlun-Pro
 site_description: '基于缠论的市场行情分析工具'
-site_url: http://www.chanlun-trader.com
+site_url: ''
 
 repo_name: 'GitHub'
-repo_url: 'https://github.com/yijixiuxin/chanlun-pro'
-edit_uri: 'blob/master/cookbook/docs/'
+repo_url: ''
+edit_uri: ''
 
 markdown_extensions:
   - toc:
@@ -18,18 +18,11 @@ plugins:
 
 nav:
   - 功能: 功能.md
-  - 售价与联系方式: 售价与联系方式.md
   - 项目展示: 项目展示.md
-  - 更新日志: UPDATE.md
-  - FAQ: FAQ.md
   - 安装:
       - 第三方账号依赖: 第三方账号依赖.md
       - 服务依赖: 服务依赖.md
-      - Windows 安装文档: Windows安装文档.md
-      - Ubuntu 安装文档: Ubuntu安装文档.md
-      - Mac 安装文档: Mac安装文档.md
       - 配置文件说明: 配置文件说明.md
-      - 授权方式: 授权方式.md
       - Web页面功能: Web页面功能.md
       - JupyterLab 安装与使用: JupyterLab安装与使用.md
       - 消息推送支持图片: 消息推送支持图片.md
@@ -37,13 +30,11 @@ nav:
   - 缠论买卖点和背驰规则: 缠论买卖点和背驰规则.md
   - 缠论数据对象与方法: 缠论数据对象与方法.md
   - 支持的交易市场: 支持的交易市场.md
-  - 历史行情下载: 历史行情下载.md
   - 策略回测与实盘:
       - 选股策略: 选股策略.md
       - 策略编写与运行: 策略编写与运行.md
       - 策略缠论参数优化: 策略缠论参数优化.md
       - 实盘: 实盘.md
-      - VNPY使用指南: vnpy使用指南.md
       - 掘金量化使用: 掘金量化使用文档.md
   - 策略示例:
       - 基于线段的中枢震荡策略: 基于线段的中枢震荡策略.md

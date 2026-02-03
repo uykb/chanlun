@@ -55,6 +55,4 @@ docker-compose up -d
 - 数据存储默认使用 SQLite，保存于 `data/` 目录下。
 - 如需自定义策略，请参考 `src/chanlun/strategy/` 目录下的示例。
 
-## 联系方式
 
-如有问题，请查看[在线文档](https://chanlun-pro.readthedocs.io/)或通过 GitHub Issues 提交。

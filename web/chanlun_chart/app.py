@@ -43,7 +43,10 @@ from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 from tornado.wsgi import WSGIContainer
 
-import chanlun.encodefix  # Fix Windows print 乱码问题  # noqa: F401
+try:
+    import chanlun.encodefix  # Fix Windows print 乱码问题  # noqa: F401
+except ImportError:
+    pass
 from chanlun import config
 
 try:
