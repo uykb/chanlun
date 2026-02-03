@@ -1085,13 +1085,4 @@ def fee_us(opt: str, price: float, amlunt: float):
     pass
 
 
-if __name__ == "__main__":
-    from chanlun import cl
-    from chanlun.exchange.exchange_tdx import ExchangeTDX
 
-    ex = ExchangeTDX()
-    klines = ex.klines("SH.000001", "d")
-    print(klines.tail(10))
-    cd = cl.CL("SH.000001", "d", {}).process_klines(klines)
-    ama = Strategy.idx_atr(cd)
-    print(ama)

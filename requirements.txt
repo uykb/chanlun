@@ -25,3 +25,6 @@ playwright
 openai
 
 ccxt
+tzlocal
+pytz
+TA-Lib

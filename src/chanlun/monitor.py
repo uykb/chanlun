@@ -408,17 +408,4 @@ def kchart_to_png(market: str, title: str, cd: ICL, cl_config: dict) -> str:
             os.remove(png_file)
 
 
-if __name__ == "__main__":
-    from chanlun import cl
-    from chanlun.cl_utils import query_cl_chart_config
-    from chanlun.exchange.exchange_tdx import ExchangeTDX
 
-    ex = ExchangeTDX()
-    cl_config = query_cl_chart_config("a", "SH.000001")
-    klines = ex.klines("SH.600519", "d")
-    cd = cl.CL("SH.600519", "d", cl_config).process_klines(klines)
-
-    image_key = kchart_to_png("a", "缠论数据", cd, cl_config)
-    print(image_key)
-
-    send_fs_msg("a", "测试", ["测试消息", image_key])

@@ -6,7 +6,18 @@ WORKDIR /app
 # Combine installation and cleanup of build tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
+    wget \
     && rm -rf /var/lib/apt/lists/*
+
+# Install TA-Lib C library
+RUN wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz && \
+    tar -xvzf ta-lib-0.4.0-src.tar.gz && \
+    cd ta-lib/ && \
+    ./configure --prefix=/usr && \
+    make && \
+    make install && \
+    cd .. && \
+    rm -rf ta-lib ta-lib-0.4.0-src.tar.gz
 
 # Install uv for faster package installation
 RUN pip install --no-cache-dir uv

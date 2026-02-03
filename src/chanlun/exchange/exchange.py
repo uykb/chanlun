@@ -1038,46 +1038,4 @@ def convert_kline_frequency(
     return period_klines
 
 
-if __name__ == "__main__":
-    import pandas as pd
 
-    from chanlun.exchange.exchange_db import ExchangeDB
-    from chanlun.exchange.exchange_tq import ExchangeTq
-
-    ex = ExchangeTq()
-    code = ex.default_code()
-    to_f = "15m"
-
-    klines_1m = ex.klines(code, "1m")
-
-    print(f"1分钟k线数据：{len(klines_1m)}")
-    print(klines_1m.tail(10))
-
-    src_klines_to_f = ex.klines(code, to_f)
-    print(f"原始 {to_f} 数据")
-    print(src_klines_to_f.tail(10))
-
-    convert_ch = convert_futures_kline_frequency(
-        klines_1m, to_f, process_exchange_type="tq"
-    )
-    print(f"转换后的 {to_f} 数据")
-    print(convert_ch.tail(10))
-    print("Done")
-
-    # convert_klines_d = convert_us_kline_frequency(klines_30m, 'd')
-    # print('klines_d')
-    # print(klines_d.tail())
-    # print('convert_klines_d')
-    # print(convert_klines_d.tail())
-
-    # convert_klines_60m = convert_us_kline_frequency(klines_30m, '60m')
-    # print('klines_60m')
-    # print(klines_60m.tail())
-    # print('convert_klines_60m')
-    # print(convert_klines_60m.tail())
-
-    # print('klines_30m')
-    # print(klines_30m.tail(30))
-    # print(klines_30m.tail(30))
-    # print(klines_30m.tail(30))
-    # print(klines_30m.tail(30))

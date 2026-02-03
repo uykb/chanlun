@@ -4,7 +4,7 @@
 
 import os
 import sys
-import telnetlib
+import socket
 
 import pymysql
 import redis
@@ -42,7 +42,8 @@ def check_env():
     # 检查代理是否设置
     if config.PROXY_HOST != "":
         try:
-            telnetlib.Telnet(config.PROXY_HOST, config.PROXY_PORT)
+            with socket.create_connection((config.PROXY_HOST, int(config.PROXY_PORT)), timeout=5):
+                pass
         except:
             print("当前设置的 VPN 代理不可用，如不使用数字货币行情，可忽略")
 
