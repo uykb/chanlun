@@ -46,7 +46,6 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 # Selectively copy core directories instead of 'COPY . .'
 COPY src/ /app/src/
 COPY web/ /app/web/
-COPY script/ /app/script/
 
 # Set environment variables
 ENV PYTHONPATH="/app/src"
