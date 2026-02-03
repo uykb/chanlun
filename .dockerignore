@@ -1,0 +1,42 @@
+# 版本控制
+.git
+.gitignore
+.github
+
+# 开发工具与环境
+.venv
+node_modules
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+.ipynb_checkpoints
+uv.lock
+pyproject.toml
+setup.py
+MANIFEST.in
+
+# 文档与教程
+notebook/
+cookbook/
+package/
+docs/
+*.md
+LICENSE
+
+# 本地数据与日志
+data/*
+logs/*
+temp/
+*.log
+
+# 平台相关脚本
+*.bat
+check_env.py
+joinquant/
+
+# 编译产物
+build/
+dist/
+*.egg-info

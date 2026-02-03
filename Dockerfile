@@ -3,6 +3,7 @@ FROM python:3.11-slim AS builder
 
 WORKDIR /app
 
+# Combine installation and cleanup of build tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
@@ -18,19 +19,34 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install runtime dependencies
+# Install runtime dependencies including playwright browsers' system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgl1 \
     libglib2.0-0 \
     curl \
+    # Added for playwright (optional but needed if using screenshot alert)
+    libnss3 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libcups2 \
+    libdrm2 \
+    libxkbcommon0 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxrandr2 \
+    libgbm1 \
+    libasound2 \
+    libpango-1.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy installed packages from builder
 COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
 
-# Copy project files
-COPY . .
+# Selectively copy core directories instead of 'COPY . .'
+COPY src/ /app/src/
+COPY web/ /app/web/
+COPY script/ /app/script/
 
 # Set environment variables
 ENV PYTHONPATH="/app/src"
@@ -46,4 +62,5 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
 
 EXPOSE 9900
 
+# Default entrypoint for the web chart app
 CMD ["python", "web/chanlun_chart/app.py", "nobrowser"]
