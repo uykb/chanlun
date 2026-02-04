@@ -56,7 +56,12 @@ except Exception as e:
     traceback.print_exc()
 
     if is_wpf_launcher is False:
-        input("出现异常，按回车键退出")
+        try:
+            import sys
+            if hasattr(sys.stdin, "isatty") and sys.stdin.isatty():
+                input("出现异常，按回车键退出")
+        except Exception:
+            pass
 
 if __name__ == "__main__":
     try:
@@ -79,4 +84,9 @@ if __name__ == "__main__":
         traceback.print_exc()
 
         if is_wpf_launcher is False:
-            input("出现异常，按回车键退出")
+            try:
+                import sys
+                if hasattr(sys.stdin, "isatty") and sys.stdin.isatty():
+                    input("出现异常，按回车键退出")
+            except Exception:
+                pass

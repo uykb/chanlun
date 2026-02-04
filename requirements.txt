@@ -28,3 +28,4 @@ ccxt
 tzlocal
 pytz
 TA-Lib
+pinyin
