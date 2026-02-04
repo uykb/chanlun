@@ -14,8 +14,8 @@ from lark_oapi.api.im.v1 import (
     CreateMessageResponse,
 )
 
-from chanlun import config
-from chanlun.db import db
+from . import config
+from .db import db
 
 
 def config_get_proxy():

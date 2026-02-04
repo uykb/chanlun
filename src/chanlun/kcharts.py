@@ -14,12 +14,12 @@ from pyecharts.charts import Kline as cKline
 from pyecharts.commons.utils import JsCode
 from pyecharts.globals import CurrentConfig
 
-from chanlun.backtesting.base import Strategy
-from chanlun.cl_analyse import LinesFormAnalyse
-from chanlun.cl_interface import ICL, LINE, ZS
-from chanlun.cl_utils import cl_qstd, klines_to_heikin_ashi_klines
-from chanlun.exchange import exchange
-from chanlun.fun import str_to_datetime
+from .backtesting.base import Strategy
+from .cl_analyse import LinesFormAnalyse
+from .cl_interface import ICL, LINE, ZS
+from .cl_utils import cl_qstd, klines_to_heikin_ashi_klines
+from .exchange import exchange
+from .fun import str_to_datetime
 
 if "JPY_PARENT_PID" in os.environ:
     from pyecharts.globals import NotebookType

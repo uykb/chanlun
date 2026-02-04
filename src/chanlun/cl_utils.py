@@ -4,11 +4,11 @@ from typing import Dict, List, Tuple, Union
 import numpy as np
 import pandas as pd
 
-from chanlun import fun
-# from chanlun.cl_interface import BI, FX, ICL, LINE, MACD_INFOS, ZS, Config, Kline
-from chanlun.cl import process_klines, CL
-from chanlun.db import db
-from chanlun.exchange import exchange
+from . import fun
+# from .cl_interface import BI, FX, ICL, LINE, MACD_INFOS, ZS, Config, Kline
+from .cl import process_klines, CL
+from .db import db
+from .exchange import exchange
 # from chanlun.file_db import FileCacheDB
 
 

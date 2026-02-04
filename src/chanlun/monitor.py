@@ -16,13 +16,13 @@ from lark_oapi.api.im.v1 import (
 )
 from playwright.sync_api import sync_playwright
 
-from chanlun import config, fun, kcharts
-from chanlun.backtesting.base import Strategy
-from chanlun.cl_interface import ICL
-from chanlun.cl_utils import bi_td, web_batch_get_cl_datas
-from chanlun.db import db
-from chanlun.exchange import Market, get_exchange
-from chanlun.utils import send_fs_msg
+from . import config, fun, kcharts
+from .backtesting.base import Strategy
+from .cl_interface import ICL
+from .cl_utils import bi_td, web_batch_get_cl_datas
+from .db import db
+from .exchange import Market, get_exchange
+from .utils import send_fs_msg
 
 
 def monitoring_code(

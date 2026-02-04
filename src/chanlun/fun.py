@@ -6,7 +6,7 @@ from functools import wraps
 import pytz
 from tzlocal import get_localzone
 
-from chanlun.config import get_data_path
+from .config import get_data_path
 
 # 统一时区
 __tz = pytz.timezone(str(get_localzone()))

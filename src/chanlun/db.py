@@ -21,9 +21,9 @@ from sqlalchemy.dialects.mysql import insert
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.pool import QueuePool
 
-from chanlun import config, fun
-from chanlun.base import Market
-from chanlun.config import get_data_path
+from . import config, fun
+from .base import Market
+from .config import get_data_path
 
 warnings.filterwarnings("ignore")
 
