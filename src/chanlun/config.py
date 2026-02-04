@@ -7,9 +7,9 @@ from typing import Dict
 def get_data_path() -> Path:
     """
     返回项目数据目录路径
-    优先使用环境变量 CHANLUN_DATA_PATH，否则默认到仓库根目录下的 data/
+    优先使用环境变量 CHANLUN_DATA_PATH，其次 DATA_PATH，否则默认到仓库根目录下的 data/
     """
-    env_path = os.getenv("CHANLUN_DATA_PATH", "")
+    env_path = os.getenv("CHANLUN_DATA_PATH", "") or os.getenv("DATA_PATH", "")
     if env_path:
         p = Path(env_path).expanduser().resolve()
     else:
@@ -22,6 +22,9 @@ def get_data_path() -> Path:
 # 网络代理配置
 PROXY_HOST: str = os.getenv("CHANLUN_PROXY_HOST", "")
 PROXY_PORT: str = os.getenv("CHANLUN_PROXY_PORT", "")
+
+# Web 登录密码（默认空）
+LOGIN_PWD: str = os.getenv("LOGIN_PWD", "")
 
 # 钉钉机器人配置（旧版，默认空，使用者可通过环境或数据库覆盖）
 DINGDING_KEY_CURRENCY: Dict[str, str] = {
