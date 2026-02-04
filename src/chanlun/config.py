@@ -44,3 +44,15 @@ FEISHU_KEYS: Dict[str, Dict[str, str]] = {
 # Binance 交易 API（默认空）
 BINANCE_APIKEY: str = os.getenv("BINANCE_APIKEY", "")
 BINANCE_SECRET: str = os.getenv("BINANCE_SECRET", "")
+
+# Web 绑定主机
+WEB_HOST: str = os.getenv("WEB_HOST", "0.0.0.0")
+
+# 数据库配置
+# DB_TYPE 可选：sqlite / mysql
+DB_TYPE: str = os.getenv("DB_TYPE", "sqlite")
+DB_DATABASE: str = os.getenv("DB_DATABASE", "chanlun_klines")
+DB_HOST: str = os.getenv("DB_HOST", "localhost")
+DB_PORT: str = os.getenv("DB_PORT", "3306")
+DB_USER: str = os.getenv("DB_USER", "")
+DB_PWD: str = os.getenv("DB_PWD", "")
